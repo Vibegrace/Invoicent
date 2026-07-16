@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Invoicent</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-file-invoice-dollar sidebar-logo"></i>
+                <h2>Invoicent</h2>
+            </div>
+
+            <nav class="sidebar-nav">
+                <li><a href="index.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+                <li><a href="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span></a></li>
+                <li><a href="invoice-create.html"><i class="fas fa-plus-circle"></i><span>New Invoice</span></a></li>
+                <li><a href="customers.html"><i class="fas fa-users"></i><span>Customers</span></a></li>
+                <li><a href="settings.html" class="active"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                <li><a href="profile.html"><i class="fas fa-user-circle"></i><span>Profile</span></a></li>
+                <li><hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 20px 0;"></li>
+                <li><a href="../api/logout.php"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Navigation Bar -->
+            <nav class="navbar">
+                <div class="navbar-left">
+                    <h3 class="navbar-title">Settings</h3>
+                </div>
+                <div class="navbar-right">
+                    <div class="user-profile">
+                        <div class="user-avatar">JD</div>
+                        <div>
+                            <strong>John Doe</strong>
+                            <div style="font-size: 12px; color: #999;">john@example.com</div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Content Area -->
+            <div class="content">
+                <div style="display: grid; grid-template-columns: 250px 1fr; gap: 20px;">
+                    <!-- Settings Sidebar -->
+                    <div class="card" style="height: fit-content;">
+                        <div class="card-body" style="padding: 0;">
+                            <ul style="list-style: none;">
+                                <li><a href="#business" class="settings-link active" style="display: block; padding: 15px; border-left: 4px solid transparent; color: #333; text-decoration: none; transition: all 0.3s;" onclick="switchTab(event, 'business')"><i class="fas fa-building"></i> Business Info</a></li>
+                                <li><a href="#invoice" class="settings-link" style="display: block; padding: 15px; border-left: 4px solid transparent; color: #333; text-decoration: none; transition: all 0.3s;" onclick="switchTab(event, 'invoice')"><i class="fas fa-file-invoice"></i> Invoice Settings</a></li>
+                                <li><a href="#email" class="settings-link" style="display: block; padding: 15px; border-left: 4px solid transparent; color: #333; text-decoration: none; transition: all 0.3s;" onclick="switchTab(event, 'email')"><i class="fas fa-envelope"></i> Email Settings</a></li>
+                                <li><a href="#whatsapp" class="settings-link" style="display: block; padding: 15px; border-left: 4px solid transparent; color: #333; text-decoration: none; transition: all 0.3s;" onclick="switchTab(event, 'whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                                <li><a href="#notifications" class="settings-link" style="display: block; padding: 15px; border-left: 4px solid transparent; color: #333; text-decoration: none; transition: all 0.3s;" onclick="switchTab(event, 'notifications')"><i class="fas fa-bell"></i> Notifications</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Settings Content -->
+                    <div>
+                        <!-- Business Info Tab -->
+                        <div id="business" class="settings-tab card" style="display: block;">
+                            <div class="card-header">
+                                <h3>Business Information</h3>
+                            </div>
+                            <form class="card-body" id="businessForm">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Business Name</label>
+                                    <input type="text" id="businessName" placeholder="Your Business Name" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Business Email</label>
+                                    <input type="email" id="businessEmail" placeholder="business@example.com" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Business Phone</label>
+                                    <input type="tel" id="businessPhone" placeholder="+234..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Business Address</label>
+                                    <textarea id="businessAddress" placeholder="Full business address" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; min-height: 100px;"></textarea>
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Currency</label>
+                                    <select id="currency" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                        <option value="NGN">Nigerian Naira (₦)</option>
+                                        <option value="USD">US Dollar ($)</option>
+                                        <option value="GBP">British Pound (£)</option>
+                                        <option value="EUR">Euro (€)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Business Logo</label>
+                                    <div style="padding: 20px; border: 2px dashed #ddd; border-radius: 6px; text-align: center; cursor: pointer;">
+                                        <input type="file" id="businessLogo" accept="image/*" style="display: none;">
+                                        <i class="fas fa-cloud-upload-alt" style="font-size: 28px; color: #667eea; margin-bottom: 10px; display: block;"></i>
+                                        <p>Click to upload logo</p>
+                                        <small style="color: #999;">Max 5MB</small>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Save Business Info
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Invoice Settings Tab -->
+                        <div id="invoice" class="settings-tab card" style="display: none;">
+                            <div class="card-header">
+                                <h3>Invoice Settings</h3>
+                            </div>
+                            <form class="card-body" id="invoiceForm">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Invoice Prefix</label>
+                                    <input type="text" id="invoicePrefix" placeholder="INV" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Next Invoice Number</label>
+                                    <input type="number" id="nextInvoiceNumber" placeholder="1" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Tax Rate (%)</label>
+                                    <input type="number" id="taxRate" placeholder="0" min="0" max="100" step="0.01" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Payment Terms</label>
+                                    <textarea id="paymentTerms" placeholder="e.g., Payment due within 30 days" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; min-height: 80px;"></textarea>
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Invoice Notes</label>
+                                    <textarea id="invoiceNotes" placeholder="Default notes to appear on invoices" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; min-height: 80px;"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Save Invoice Settings
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Email Settings Tab -->
+                        <div id="email" class="settings-tab card" style="display: none;">
+                            <div class="card-header">
+                                <h3>Email Settings</h3>
+                            </div>
+                            <form class="card-body" id="emailForm">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                        <input type="checkbox" id="autoEmailInvoice" checked>
+                                        <span>Automatically send invoice via email</span>
+                                    </label>
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Email Subject</label>
+                                    <input type="text" id="emailSubject" placeholder="Invoice #[INV_NUMBER]" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Email Message</label>
+                                    <textarea id="emailMessage" placeholder="Dear [CUSTOMER_NAME]..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; min-height: 150px;"></textarea>
+                                    <small style="color: #999; display: block; margin-top: 8px;">Use [CUSTOMER_NAME], [INV_NUMBER], [AMOUNT], [DUE_DATE] as placeholders</small>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Save Email Settings
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- WhatsApp Settings Tab -->
+                        <div id="whatsapp" class="settings-tab card" style="display: none;">
+                            <div class="card-header">
+                                <h3>WhatsApp Settings</h3>
+                            </div>
+                            <form class="card-body" id="whatsappForm">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                        <input type="checkbox" id="autoWhatsappInvoice">
+                                        <span>Automatically send invoice via WhatsApp</span>
+                                    </label>
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">WhatsApp Business Phone</label>
+                                    <input type="tel" id="whatsappPhone" placeholder="+234..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">WhatsApp Message</label>
+                                    <textarea id="whatsappMessage" placeholder="Hi [CUSTOMER_NAME], your invoice..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; min-height: 100px;"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Save WhatsApp Settings
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Notifications Tab -->
+                        <div id="notifications" class="settings-tab card" style="display: none;">
+                            <div class="card-header">
+                                <h3>Notification Preferences</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 15px;">
+                                        <input type="checkbox" id="notifyInvoiceSent" checked>
+                                        <span>Notify when invoice is sent</span>
+                                    </label>
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 15px;">
+                                        <input type="checkbox" id="notifyInvoicePaid" checked>
+                                        <span>Notify when invoice is paid</span>
+                                    </label>
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 15px;">
+                                        <input type="checkbox" id="notifyOverdue" checked>
+                                        <span>Notify about overdue invoices</span>
+                                    </label>
+                                </div>
+
+                                <button type="button" class="btn btn-primary" onclick="saveNotifications()">
+                                    <i class="fas fa-save"></i> Save Notifications
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(event, tabName) {
+            event.preventDefault();
+            
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.settings-tab');
+            tabs.forEach(tab => tab.style.display = 'none');
+            
+            // Remove active class from all links
+            const links = document.querySelectorAll('.settings-link');
+            links.forEach(link => {
+                link.style.borderLeftColor = 'transparent';
+                link.style.color = '#333';
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).style.display = 'block';
+            
+            // Add active class to clicked link
+            event.target.closest('a').style.borderLeftColor = '#667eea';
+            event.target.closest('a').style.color = '#667eea';
+        }
+
+        // Form submissions
+        document.getElementById('businessForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Business settings saved successfully!');
+        });
+
+        document.getElementById('invoiceForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Invoice settings saved successfully!');
+        });
+
+        document.getElementById('emailForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Email settings saved successfully!');
+        });
+
+        document.getElementById('whatsappForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('WhatsApp settings saved successfully!');
+        });
+
+        function saveNotifications() {
+            alert('Notification preferences saved successfully!');
+        }
+
+        // Logo upload
+        document.querySelector('[id="businessLogo"]')?.parentElement.addEventListener('click', function() {
+            document.getElementById('businessLogo').click();
+        });
+
+        document.getElementById('businessLogo')?.addEventListener('change', function(e) {
+            if (e.target.files[0]) {
+                alert('Logo uploaded: ' + e.target.files[0].name);
+            }
+        });
+    </script>
+</body>
+</html>
