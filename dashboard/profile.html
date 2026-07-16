@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Invoicent</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-file-invoice-dollar sidebar-logo"></i>
+                <h2>Invoicent</h2>
+            </div>
+
+            <nav class="sidebar-nav">
+                <li><a href="index.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+                <li><a href="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span></a></li>
+                <li><a href="invoice-create.html"><i class="fas fa-plus-circle"></i><span>New Invoice</span></a></li>
+                <li><a href="customers.html"><i class="fas fa-users"></i><span>Customers</span></a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                <li><a href="profile.html" class="active"><i class="fas fa-user-circle"></i><span>Profile</span></a></li>
+                <li><hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 20px 0;"></li>
+                <li><a href="../api/logout.php"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Navigation Bar -->
+            <nav class="navbar">
+                <div class="navbar-left">
+                    <h3 class="navbar-title">Profile</h3>
+                </div>
+                <div class="navbar-right">
+                    <div class="user-profile">
+                        <div class="user-avatar">JD</div>
+                        <div>
+                            <strong>John Doe</strong>
+                            <div style="font-size: 12px; color: #999;">john@example.com</div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Content Area -->
+            <div class="content">
+                <div style="display: grid; grid-template-columns: 300px 1fr; gap: 30px;">
+                    <!-- Profile Avatar Section -->
+                    <div style="text-align: center;">
+                        <div class="card">
+                            <div class="card-body" style="text-align: center; padding: 30px;">
+                                <div style="
+                                    width: 150px;
+                                    height: 150px;
+                                    border-radius: 50%;
+                                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    color: white;
+                                    font-size: 50px;
+                                    font-weight: 700;
+                                    margin: 0 auto 20px;
+                                ">JD</div>
+                                <h3>John Doe</h3>
+                                <p style="color: #999; margin-bottom: 20px;">john@example.com</p>
+                                <button type="button" class="btn btn-primary" onclick="document.getElementById('profilePhoto').click()">
+                                    <i class="fas fa-camera"></i> Change Photo
+                                </button>
+                                <input type="file" id="profilePhoto" accept="image/*" style="display: none;">
+                            </div>
+                        </div>
+
+                        <div class="card" style="margin-top: 20px;">
+                            <div class="card-header">
+                                <h3>Account Status</h3>
+                            </div>
+                            <div class="card-body">
+                                <div style="text-align: left;">
+                                    <p><strong>Status:</strong> <span style="color: #28a745;">✓ Active</span></p>
+                                    <p><strong>Joined:</strong> January 15, 2024</p>
+                                    <p><strong>Plan:</strong> Professional</p>
+                                    <p><strong>Invoices Created:</strong> 24</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Form Section -->
+                    <div>
+                        <!-- Personal Information -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Personal Information</h3>
+                            </div>
+                            <form class="card-body" id="profileForm">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                                    <div>
+                                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">First Name</label>
+                                        <input type="text" id="firstName" value="John" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                    </div>
+                                    <div>
+                                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Last Name</label>
+                                        <input type="text" id="lastName" value="Doe" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                    </div>
+                                </div>
+
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Email Address</label>
+                                    <input type="email" id="email" value="john@example.com" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                </div>
+
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Phone Number</label>
+                                    <input type="tel" id="phone" placeholder="+234..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Save Profile
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Change Password -->
+                        <div class="card" style="margin-top: 20px;">
+                            <div class="card-header">
+                                <h3>Change Password</h3>
+                            </div>
+                            <form class="card-body" id="passwordForm">
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Current Password</label>
+                                    <input type="password" id="currentPassword" placeholder="Enter current password" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                </div>
+
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">New Password</label>
+                                    <input type="password" id="newPassword" placeholder="Enter new password (min 8 characters)" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                </div>
+
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Confirm Password</label>
+                                    <input type="password" id="confirmPassword" placeholder="Confirm new password" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-lock"></i> Update Password
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Two-Factor Authentication -->
+                        <div class="card" style="margin-top: 20px;">
+                            <div class="card-header">
+                                <h3>Two-Factor Authentication</h3>
+                            </div>
+                            <div class="card-body">
+                                <p style="margin-bottom: 15px;">Enhance your account security with two-factor authentication.</p>
+                                <button type="button" class="btn btn-success">
+                                    <i class="fas fa-shield-alt"></i> Enable 2FA
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Delete Account -->
+                        <div class="card" style="margin-top: 20px; border-left-color: #dc3545;">
+                            <div class="card-header" style="background: #f8f9fa;">
+                                <h3 style="color: #dc3545;">Danger Zone</h3>
+                            </div>
+                            <div class="card-body">
+                                <p style="margin-bottom: 15px; color: #666;">Once you delete your account, there is no going back. Please be certain.</p>
+                                <button type="button" class="btn btn-danger" onclick="confirmDelete()">
+                                    <i class="fas fa-trash-alt"></i> Delete Account
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Profile form submission
+        document.getElementById('profileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Profile updated successfully!');
+        });
+
+        // Password form submission
+        document.getElementById('passwordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (newPassword !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            if (newPassword.length < 8) {
+                alert('Password must be at least 8 characters!');
+                return;
+            }
+
+            alert('Password updated successfully!');
+            this.reset();
+        });
+
+        // Profile photo upload
+        document.getElementById('profilePhoto').addEventListener('change', function(e) {
+            if (e.target.files[0]) {
+                alert('Profile photo updated: ' + e.target.files[0].name);
+            }
+        });
+
+        // Delete account confirmation
+        function confirmDelete() {
+            if (confirm('Are you absolutely sure you want to delete your account? This action cannot be undone.')) {
+                if (confirm('This will permanently delete all your data. Continue?')) {
+                    alert('Account deletion initiated. You will receive a confirmation email.');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
