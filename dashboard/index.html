@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Invoicent</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-file-invoice-dollar sidebar-logo"></i>
+                <h2>Invoicent</h2>
+            </div>
+
+            <nav class="sidebar-nav">
+                <li>
+                    <a href="index.html" class="active">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="invoices.html">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>Invoices</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="invoice-create.html">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>New Invoice</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="customers.html">
+                        <i class="fas fa-users"></i>
+                        <span>Customers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 20px 0;">
+                </li>
+                <li>
+                    <a href="../api/logout.php">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Navigation Bar -->
+            <nav class="navbar">
+                <div class="navbar-left">
+                    <h3 class="navbar-title">Dashboard</h3>
+                </div>
+
+                <div class="navbar-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="globalSearch" placeholder="Search invoices, customers...">
+                    </div>
+
+                    <button class="notifications-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+
+                    <div class="user-profile">
+                        <div class="user-avatar" id="userAvatar">J</div>
+                        <div>
+                            <strong id="userName">John Doe</strong>
+                            <div style="font-size: 12px; color: #999;" id="userEmail">john@example.com</div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Content Area -->
+            <div class="content">
+                <!-- Welcome Card -->
+                <div class="welcome-card">
+                    <h1>Welcome back, <span id="welcomeName">John</span>! 👋</h1>
+                    <p>You have <strong id="pendingCount">0</strong> pending invoices and <strong id="unreadCount">0</strong> unread messages</p>
+                    <a href="invoice-create.html" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Create New Invoice
+                    </a>
+                </div>
+
+                <!-- Statistics Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-file-alt stat-icon"></i>
+                        <div class="stat-value" id="totalInvoices">0</div>
+                        <div class="stat-label">Total Invoices</div>
+                    </div>
+
+                    <div class="stat-card success">
+                        <i class="fas fa-check-circle stat-icon"></i>
+                        <div class="stat-value" id="sentInvoices">0</div>
+                        <div class="stat-label">Sent Invoices</div>
+                    </div>
+
+                    <div class="stat-card warning">
+                        <i class="fas fa-edit stat-icon"></i>
+                        <div class="stat-value" id="draftInvoices">0</div>
+                        <div class="stat-label">Draft Invoices</div>
+                    </div>
+
+                    <div class="stat-card danger">
+                        <i class="fas fa-money-bill-wave stat-icon"></i>
+                        <div class="stat-value" id="totalRevenue">₦0</div>
+                        <div class="stat-label">Total Revenue</div>
+                    </div>
+                </div>
+
+                <!-- Recent Invoices Section -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Recent Invoices</h3>
+                        <a href="invoices.html" class="btn btn-outline btn-sm">
+                            View All <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Invoice #</th>
+                                    <th>Customer</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentInvoicesTable">
+                                <tr>
+                                    <td colspan="6" style="text-align: center; padding: 30px;">
+                                        <i class="fas fa-inbox"></i> No invoices yet
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Quick Actions Section -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Quick Actions</h3>
+                    </div>
+                    <div class="card-body" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                        <a href="invoice-create.html" class="btn btn-primary" style="justify-content: center;">
+                            <i class="fas fa-file-export"></i> Create Invoice
+                        </a>
+                        <button class="btn btn-success" style="justify-content: center;" onclick="generatePDF()">
+                            <i class="fas fa-download"></i> Download Invoice
+                        </button>
+                        <button class="btn btn-info" style="justify-content: center; background: #17a2b8;" onclick="sendEmail()">
+                            <i class="fas fa-envelope"></i> Send Email
+                        </button>
+                        <a href="customers.html" class="btn btn-secondary" style="justify-content: center;">
+                            <i class="fas fa-user-plus"></i> Add Customer
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserInfo();
+            loadDashboardStats();
+            loadRecentInvoices();
+        });
+
+        function loadUserInfo() {
+            const userData = {
+                name: localStorage.getItem('userName') || 'John Doe',
+                email: localStorage.getItem('userEmail') || 'john@example.com',
+                firstName: localStorage.getItem('userFirstName') || 'John'
+            };
+
+            document.getElementById('userName').textContent = userData.name;
+            document.getElementById('userEmail').textContent = userData.email;
+            document.getElementById('welcomeName').textContent = userData.firstName;
+
+            // Set avatar initials
+            const initials = userData.name.split(' ').map(n => n[0]).join('').toUpperCase();
+            document.getElementById('userAvatar').textContent = initials;
+        }
+
+        function loadDashboardStats() {
+            // TODO: Fetch from API
+            // For now, displaying sample data
+            document.getElementById('totalInvoices').textContent = '12';
+            document.getElementById('sentInvoices').textContent = '8';
+            document.getElementById('draftInvoices').textContent = '4';
+            document.getElementById('totalRevenue').textContent = '₦450,000';
+            document.getElementById('pendingCount').textContent = '2';
+            document.getElementById('unreadCount').textContent = '5';
+        }
+
+        function loadRecentInvoices() {
+            // TODO: Fetch from API
+            const tableBody = document.getElementById('recentInvoicesTable');
+            
+            const sampleInvoices = [
+                {
+                    number: 'INV-001',
+                    customer: 'Acme Corp',
+                    date: '2024-07-15',
+                    amount: '₦150,000',
+                    status: 'paid'
+                },
+                {
+                    number: 'INV-002',
+                    customer: 'Tech Solutions',
+                    date: '2024-07-14',
+                    amount: '₦200,000',
+                    status: 'sent'
+                },
+                {
+                    number: 'INV-003',
+                    customer: 'Global Industries',
+                    date: '2024-07-13',
+                    amount: '₦100,000',
+                    status: 'draft'
+                }
+            ];
+
+            if (sampleInvoices.length > 0) {
+                tableBody.innerHTML = sampleInvoices.map(invoice => `
+                    <tr>
+                        <td><strong>${invoice.number}</strong></td>
+                        <td>${invoice.customer}</td>
+                        <td>${invoice.date}</td>
+                        <td>${invoice.amount}</td>
+                        <td>
+                            <span style="
+                                padding: 5px 10px;
+                                border-radius: 4px;
+                                font-size: 12px;
+                                font-weight: 600;
+                                background: ${getStatusColor(invoice.status)};
+                                color: white;
+                            ">
+                                ${invoice.status.charAt(0).toUpperCase() + invoice.status.slice(1)}
+                            </span>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" onclick="viewInvoice('${invoice.number}')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+        }
+
+        function getStatusColor(status) {
+            const colors = {
+                'draft': '#ffc107',
+                'sent': '#17a2b8',
+                'paid': '#28a745',
+                'overdue': '#dc3545'
+            };
+            return colors[status] || '#6c757d';
+        }
+
+        function generatePDF() {
+            alert('PDF generation will be implemented');
+        }
+
+        function sendEmail() {
+            alert('Email sending will be implemented');
+        }
+
+        function viewInvoice(invoiceNumber) {
+            window.location.href = `invoice-view.html?id=${invoiceNumber}`;
+        }
+
+        // Search functionality
+        document.getElementById('globalSearch').addEventListener('input', function(e) {
+            const query = e.target.value;
+            if (query.length > 2) {
+                // TODO: Implement search
+                console.log('Searching for:', query);
+            }
+        });
+    </script>
+</body>
+</html>
